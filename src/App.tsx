@@ -1,23 +1,27 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React, { useState } from "react";
+import Switch from "@mui/material/Switch";
+import Typography from "@mui/material/Typography";
+import { AppContainer, Content, HeaderContainer } from "./App.css";
+import { DeveloperPage } from "./Components/Developer/Developer";
+import { WriterPage } from "./Components/Writer/Writer";
 
 function App() {
+  const [checked, setChecked] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Testing</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer darkMode={checked}>
+      <Content>
+        <HeaderContainer className="App-header">
+          <Typography variant="h2">Abby Gervase</Typography>
+          <Switch
+            checked={checked}
+            onChange={() => setChecked(!checked)}
+            inputProps={{ "aria-label": "controlled" }}
+          />
+        </HeaderContainer>
+        {checked ? <DeveloperPage /> : <WriterPage />}
+      </Content>
+    </AppContainer>
   );
 }
 
