@@ -3,6 +3,11 @@ import { Box } from "@mui/system";
 import React, { useState } from "react";
 import TabPanel from "../Widgets/TabPanel";
 import { StyledTab } from "./Developer.css";
+import { Education } from "./Education/Education";
+import { Experience } from "./Experience/Experience";
+import { Projects } from "./Projects/Projects";
+import { SECTIONS } from "./sections";
+import { Skills } from "./Skills/Skills";
 
 export const DeveloperPage = () => {
   const [tab, setTab] = useState(0);
@@ -18,9 +23,23 @@ export const DeveloperPage = () => {
     setTab(newValue);
   };
 
+  const renderSection = (sectionName: string) => {
+    switch (sectionName) {
+      case "Skills":
+        return <Skills />;
+      case "Projects":
+        return <Projects />;
+      case "Education":
+        return <Education />;
+      case "Experience":
+        return <Experience />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <>
-      I'm a developer
       <Box sx={{ width: "100%" }}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs
@@ -29,20 +48,16 @@ export const DeveloperPage = () => {
             aria-label="basic tabs example"
             textColor="inherit"
           >
-            <StyledTab label="Item One" {...a11yProps(0)} />
-            <StyledTab label="Item Two" {...a11yProps(1)} />
-            <StyledTab label="Item Three" {...a11yProps(2)} />
+            {SECTIONS.map((section, index) => (
+              <StyledTab label={section} {...a11yProps(index)} />
+            ))}
           </Tabs>
         </Box>
-        <TabPanel value={tab} index={0}>
-          Item One
-        </TabPanel>
-        <TabPanel value={tab} index={1}>
-          Item Two
-        </TabPanel>
-        <TabPanel value={tab} index={2}>
-          Item Three
-        </TabPanel>
+        {SECTIONS.map((section, index) => (
+          <TabPanel value={tab} index={index}>
+            {renderSection(section)}
+          </TabPanel>
+        ))}
       </Box>
     </>
   );
