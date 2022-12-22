@@ -10,3 +10,7 @@ export const StyledTab = styled(Tab)`
     color: pink;
   }
 `;
+
+export const EntryContainer = styled.div`
+  margin: 20px 0;
+`;
