@@ -15,10 +15,3 @@ export const Content = styled.div`
   max-width: 1200px;
   margin: 0 auto;
 `;
-
-export const HeaderContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 40px 0;
-`;
